@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>YZ TECH – BTP & Architecture 3D, Services Web, Formations & Matériel</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="hero-badge.jpg">
+
+  <!-- Google Fonts: Unbounded & Manrope -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Unbounded:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            deep: '#061b16',
+            forest: '#0b2f27',
+            moss: '#1d6b58',
+            orange: {
+              DEFAULT: '#ff9a1f',
+              hover: '#ffaa3b',
+              glow: '#ff9a1f44',
+              soft: '#fff4e5'
+            },
+            paper: '#f6efe0',
+            ink: '#0b2f27',
+            soft: '#4d5f56',
+            line: '#d9d0bb',
+            muted: '#cfe0d6',
+            darkPaper: '#09211b'
+          },
+          fontFamily: {
+            display: ['Unbounded', 'system-ui', 'sans-serif'],
+            sans: ['Manrope', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'brutal': '5px 5px 0px 0px #ff9a1f',
+            'brutal-dark': '5px 5px 0px 0px #0b2f27',
+            'brutal-sm': '3px 3px 0px 0px #ff9a1f',
+            'glow-orange': '0 0 35px -5px rgba(255, 154, 31, 0.4)',
+            'glow-emerald': '0 0 35px -5px rgba(29, 107, 88, 0.4)',
+          },
+          animation: {
+            'float-slow': 'float 5s ease-in-out infinite',
+            'float-delayed': 'float 5s ease-in-out 2.5s infinite',
+            'pulse-subtle': 'pulseSlow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            pulseSlow: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.85' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .stroke-text {
+      -webkit-text-stroke: 1.5px #f6efe0;
+      color: transparent;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+  </style>
+</head>
+
+<body class="bg-paper text-ink font-sans antialiased selection:bg-orange selection:text-deep min-h-screen flex flex-col">
+
+  <!-- ================= HEADER STICKY ================= -->
+  <header class="sticky top-0 z-50 bg-deep/95 backdrop-blur-md border-b border-forest transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo avec badge officiel -->
+        <a href="#haut" class="flex items-center gap-3 group focus:outline-none">
+          <div class="relative w-11 h-11 rounded-full overflow-hidden border-2 border-orange shadow-brutal-sm group-hover:scale-105 transition-transform bg-forest flex-shrink-0">
+            <img src="hero-badge.jpg" alt="Logo YZ TECH" class="w-full h-full object-cover">
+          </div>
+          <div class="flex flex-col">
+            <span class="font-display font-black text-xl tracking-tight text-white group-hover:text-orange transition-colors">
+              YZ <span class="text-orange">TECH</span>
+            </span>
+            <span class="text-[10px] uppercase tracking-wider text-muted font-bold -mt-1">BTP & 3D • Services Digitaux • Matériel</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation épurée -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-muted">
+          <a href="#services" class="hover:text-orange transition-colors">Services BTP & Web</a>
+          <a href="#formations" class="hover:text-orange transition-colors">Formations (Local & Ligne)</a>
+          <a href="#materiel" class="hover:text-orange transition-colors">Matériel Informatique</a>
+          <a href="#contact" class="hover:text-orange transition-colors">Contact</a>
+        </nav>
+
+        <!-- CTA WhatsApp Direct -->
+        <div class="flex items-center gap-3">
+          <a data-wa="header" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange hover:bg-orange-hover text-deep font-display font-black text-xs uppercase tracking-wider shadow-brutal-sm hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+
+          <!-- Mobile Hamburger -->
+          <button id="menu-btn" class="md:hidden text-muted hover:text-white p-2 rounded-xl bg-forest focus:outline-none" aria-label="Ouvrir le menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-deep border-b border-forest/80 px-6 py-5 space-y-4">
+      <a href="#services" class="block text-white font-medium hover:text-orange py-1">Services BTP & Web</a>
+      <a href="#formations" class="block text-white font-medium hover:text-orange py-1">Formations (Local & Ligne)</a>
+      <a href="#materiel" class="block text-white font-medium hover:text-orange py-1">Matériel Informatique & Gaming</a>
+      <a href="#contact" class="block text-white font-medium hover:text-orange py-1">Nous Contacter</a>
+      <a data-wa="mobile" href="#" class="block w-full text-center py-3 rounded-xl bg-orange text-deep font-display font-black text-xs uppercase tracking-wider">
+        Écrire sur WhatsApp (+225 07 10 18 57 62)
+      </a>
+    </div>
+  </header>
+
+  <main id="haut" class="flex-grow">
+    
+    <!-- ================= HERO SECTION ================= -->
+    <section class="relative bg-deep text-paper pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+      <!-- Glow ambient orbs -->
+      <div class="absolute -top-32 -right-32 w-96 h-96 bg-orange/20 rounded-full blur-3xl pointer-events-none animate-pulse-subtle"></div>
+      <div class="absolute top-1/2 -left-20 w-80 h-80 bg-moss/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Texte d'accroche direct -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-forest border border-moss/60 text-xs font-bold text-orange tracking-wide">
+              <span class="w-2 h-2 rounded-full bg-orange animate-ping"></span>
+              Expertise BTP, Architecture 3D & Solutions Digitales à Abidjan
+            </div>
+
+            <h1 class="font-display font-black text-3xl sm:text-5xl lg:text-5xl tracking-tight leading-[1.12]">
+              <span class="block stroke-text">BTP, Architecture,</span>
+              <span class="block text-orange drop-shadow-sm">Digital & Équipement Tech.</span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-muted max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+              <strong>YZ TECH</strong> intervient dans l'<strong>ingénierie BTP & Architecture 3D</strong> (plans, calculs, rendus), la <strong>création de sites web dynamiques & CV</strong>, les <strong>formations pratiques certifiantes</strong> (en local à Abidjan ou à distance), et la <strong>vente de matériel informatique performant</strong>.
+            </p>
+
+            <!-- Pills signatures BTP & Tech inspirées de la maquette -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-1">
+              <div class="px-4 py-2 rounded-xl bg-forest/90 border border-orange/40 text-xs font-bold text-white flex items-center gap-2 shadow-sm">
+                <span>⛑️</span>
+                <span>BTP et génie civil</span>
+              </div>
+              <div class="px-4 py-2 rounded-xl bg-forest/90 border border-orange/40 text-xs font-bold text-white flex items-center gap-2 shadow-sm">
+                <span>🏢</span>
+                <span>Architecture et design</span>
+              </div>
+              <div class="px-4 py-2 rounded-xl bg-orange text-deep font-display font-black text-xs flex items-center gap-2 shadow-brutal-sm">
+                <span>🧊</span>
+                <span>3D et rendu réaliste</span>
+              </div>
+            </div>
+
+            <!-- Boutons d'Action Rapide -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-3">
+              <a href="#services" class="px-6 py-3.5 rounded-full bg-orange hover:bg-orange-hover text-deep font-display font-black text-xs uppercase tracking-wider shadow-brutal hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                Nos Services (BTP & Digital)
+              </a>
+              <a href="#formations" class="px-6 py-3.5 rounded-full bg-forest hover:bg-moss border border-moss text-white font-display font-bold text-xs uppercase tracking-wider transition-all">
+                Formations Pratiques
+              </a>
+              <a href="#materiel" class="px-6 py-3.5 rounded-full bg-deep hover:bg-forest border border-orange/40 text-orange font-display font-bold text-xs uppercase tracking-wider transition-all">
+                Matériel & PC Pro
+              </a>
+            </div>
+
+            <!-- Preuves concrètes -->
+            <div class="pt-6 border-t border-forest/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-left">
+              <div>
+                <p class="font-display font-black text-2xl text-orange">BTP & 3D</p>
+                <p class="text-xs text-muted">Plans, BIM & Rendus</p>
+              </div>
+              <div>
+                <p class="font-display font-black text-2xl text-orange">Web & CV</p>
+                <p class="text-xs text-muted">Sites & Profils Pro</p>
+              </div>
+              <div>
+                <p class="font-display font-black text-2xl text-orange">Présentiel</p>
+                <p class="text-xs text-muted">Ou En Ligne Direct</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visuel avec illustration officielle fournie -->
+          <div class="lg:col-span-5 flex justify-center relative">
+            <div class="relative w-64 sm:w-80 aspect-square">
+              
+              <!-- Anneau lumineux pulsant -->
+              <div class="absolute -inset-3 rounded-full border-2 border-dashed border-orange/50 animate-[spin_30s_linear_infinite]"></div>
+              
+              <!-- Badge Officiel YZ TECH -->
+              <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-orange shadow-2xl bg-forest">
+                <img src="hero-badge.jpg" alt="YZ TECH Illustration Officielle" class="w-full h-full object-cover">
+              </div>
+
+              <!-- Badge Flottant 1 : BTP & Rendu 3D -->
+              <div class="absolute -top-3 -left-4 glass-card px-3.5 py-2 rounded-2xl shadow-xl flex items-center gap-2.5 animate-float-slow">
+                <span class="w-7 h-7 rounded-lg bg-orange/20 text-orange flex items-center justify-center font-bold text-xs">🏗️</span>
+                <div>
+                  <p class="text-xs font-bold text-white">BTP & Plans 3D</p>
+                  <p class="text-[10px] text-orange">Revit • ArchiCAD</p>
+                </div>
+              </div>
+
+              <!-- Badge Flottant 2 : Web & Formations -->
+              <div class="absolute -bottom-3 -right-2 glass-card px-3.5 py-2 rounded-2xl shadow-xl flex items-center gap-2.5 animate-float-delayed">
+                <span class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs">🌐</span>
+                <div>
+                  <p class="text-xs font-bold text-white">Sites Web & CV</p>
+                  <p class="text-[10px] text-orange">Formations certifiées</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= PILIER 1 : NOS SERVICES (BTP, 3D & DIGITAL) ================= -->
+    <section id="services" class="py-16 md:py-24 bg-paper border-b border-line">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <span class="text-xs font-display font-extrabold uppercase tracking-widest text-moss">Ingénierie BTP, 3D & Solutions Numériques</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-2 mb-4">
+            Nos Services Professionnels
+          </h2>
+          <div class="w-20 h-1.5 bg-orange mx-auto rounded-full mb-4"></div>
+          <p class="text-soft text-base">
+            De la conception de vos plans de construction et rendus photoréalistes à la création de votre site web dynamique ou de votre CV : découvrez des prestations exécutées avec rigueur et rapidité.
+          </p>
+
+          <!-- Toggle / Filtre Épuré -->
+          <div class="inline-flex p-1.5 mt-6 bg-white border-2 border-ink rounded-full gap-2 shadow-brutal-sm" id="services-tabs" role="tablist">
+            <button type="button" onclick="switchServiceCategory('btp')" id="btn-tab-btp" class="px-5 py-2 rounded-full text-xs font-display font-extrabold transition-all bg-ink text-paper">
+              ⛑️ Pôle BTP, Architecture & 3D
+            </button>
+            <button type="button" onclick="switchServiceCategory('digital')" id="btn-tab-digital" class="px-5 py-2 rounded-full text-xs font-display font-extrabold transition-all text-ink hover:bg-orange/20">
+              💻 Pôle Digital, Web & CV
+            </button>
+          </div>
+        </div>
+
+        <!-- GROUPE 1 : SERVICES BTP, ARCHITECTURE & RENDU 3D -->
+        <div id="services-group-btp" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Carte BTP 1 : BTP et Génie Civil -->
+          <div class="bg-white p-7 rounded-3xl border-2 border-ink shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-14 h-14 rounded-2xl bg-orange/20 text-orange flex items-center justify-center text-2xl font-black">
+                ⛑️
+              </div>
+              <h3 class="font-display font-bold text-lg text-ink">BTP & Génie Civil</h3>
+              <p class="text-soft text-xs leading-relaxed">
+                Production de plans d'exécution précis, calculs et dimensionnement de structures, métrés et études de prix pour vos chantiers.
+              </p>
+              <ul class="text-xs text-soft space-y-1.5 pt-2">
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Dessin et plans 2D/3D (AutoCAD, Revit)</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Calcul de structures (Robot Structural)</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Devis quantitatifs & métrés de chantier</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-line mt-6">
+              <a data-wa="service-btp" href="#" class="w-full py-3 rounded-xl bg-ink hover:bg-orange hover:text-deep text-paper font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Demander un devis BTP</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Carte BTP 2 : Architecture et Design -->
+          <div class="bg-forest text-paper p-7 rounded-3xl border-2 border-forest shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-14 h-14 rounded-2xl bg-orange text-deep flex items-center justify-center text-2xl font-black">
+                🏢
+              </div>
+              <h3 class="font-display font-bold text-lg text-white">Architecture & Design d'Espace</h3>
+              <p class="text-muted text-xs leading-relaxed">
+                Conception architecturale complète, élaboration de dossiers de permis de construire et plans d'aménagement intérieurs/extérieurs.
+              </p>
+              <ul class="text-xs text-muted space-y-1.5 pt-2">
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Plans architecturaux (ArchiCAD, Revit)</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Dossiers pour permis de construire</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Aménagement d'espace & design</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-moss/60 mt-6">
+              <a data-wa="service-archi" href="#" class="w-full py-3 rounded-xl bg-orange hover:bg-orange-hover text-deep font-display font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Commander un plan archi</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Carte BTP 3 : 3D et Rendu Réaliste -->
+          <div class="bg-white p-7 rounded-3xl border-2 border-ink shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-14 h-14 rounded-2xl bg-moss/20 text-moss flex items-center justify-center text-2xl font-black">
+                🧊
+              </div>
+              <h3 class="font-display font-bold text-lg text-ink">3D & Rendu Photoréaliste</h3>
+              <p class="text-soft text-xs leading-relaxed">
+                Donnez vie à vos projets immobiliers avant leur construction avec des perspectives 3D saisissantes et des visites virtuelles animées.
+              </p>
+              <ul class="text-xs text-soft space-y-1.5 pt-2">
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Rendus extérieurs & intérieurs (D5, Lumion, Enscape)</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Visites virtuelles & animations 3D</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Modélisation détaillée sur SketchUp & Blender</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-line mt-6">
+              <a data-wa="service-rendu3d" href="#" class="w-full py-3 rounded-xl bg-ink hover:bg-orange hover:text-deep text-paper font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Commander un rendu 3D</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- GROUPE 2 : SERVICES DIGITAUX, WEB & CV -->
+        <div id="services-group-digital" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Carte Digital 1 : Sites Web Dynamiques & Vitrines -->
+          <div class="bg-white p-7 rounded-3xl border-2 border-ink shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-14 h-14 rounded-2xl bg-orange/20 text-orange flex items-center justify-center text-2xl font-black">
+                💻
+              </div>
+              <h3 class="font-display font-bold text-lg text-ink">Sites Web Dynamiques & Vitrines</h3>
+              <p class="text-soft text-xs leading-relaxed">
+                Création de sites internet modernes, responsives, avec formulaires interactifs, catalogue ou espace dynamique sur mesure.
+              </p>
+              <ul class="text-xs text-soft space-y-1.5 pt-2">
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Sites vitrines professionnels</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Sites web dynamiques & interactifs</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Optimisation mobile & référencement</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-line mt-6">
+              <a data-wa="service-web" href="#" class="w-full py-3 rounded-xl bg-ink hover:bg-orange hover:text-deep text-paper font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Commander un site web</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Carte Digital 2 : Conception de CV Professionnels -->
+          <div class="bg-forest text-paper p-7 rounded-3xl border-2 border-forest shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-14 h-14 rounded-2xl bg-orange text-deep flex items-center justify-center text-2xl font-black">
+                📄
+              </div>
+              <h3 class="font-display font-bold text-lg text-white">Conception de CV Professionnels</h3>
+              <p class="text-muted text-xs leading-relaxed">
+                Rédaction, restructuration et mise en page soignée de votre CV pour capter immédiatement l'attention des recruteurs et franchir les filtres ATS.
+              </p>
+              <ul class="text-xs text-muted space-y-1.5 pt-2">
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Design épuré, percutant & moderne</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Format PDF haute qualité & Word éditable</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Lettre de motivation personnalisée</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-moss/60 mt-6">
+              <a data-wa="service-cv" href="#" class="w-full py-3 rounded-xl bg-orange hover:bg-orange-hover text-deep font-display font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Concevoir mon CV</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Carte Digital 3 : Design Graphique & Logiciels -->
+          <div class="bg-white p-7 rounded-3xl border-2 border-ink shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="w-14 h-14 rounded-2xl bg-moss/20 text-moss flex items-center justify-center text-2xl font-black">
+                🎨
+              </div>
+              <h3 class="font-display font-bold text-lg text-ink">Design Graphique & Logiciels</h3>
+              <p class="text-soft text-xs leading-relaxed">
+                Logos vectoriels, affiches publicitaires, flyers et installation/configuration propre de vos outils professionnels.
+              </p>
+              <ul class="text-xs text-soft space-y-1.5 pt-2">
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Logos & identités visuelles</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Affiches, flyers & bannières</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Installation & activation logiciels</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-line mt-6">
+              <a data-wa="service-graphisme" href="#" class="w-full py-3 rounded-xl bg-ink hover:bg-orange hover:text-deep text-paper font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Commander un visuel</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= PILIER 2 : NOS FORMATIONS PRATIQUES ================= -->
+    <section id="formations" class="py-16 md:py-24 bg-deep text-paper relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-display font-extrabold uppercase tracking-widest text-orange">Pôle Formations Professionnelles</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 mb-4">
+            Des formations 100% pratiques et certifiantes
+          </h2>
+          <div class="w-20 h-1.5 bg-orange mx-auto rounded-full mb-4"></div>
+          <p class="text-muted text-base">
+            Apprenez les logiciels les plus recherchés du BTP, de l'Architecture et du Digital. Choisissez votre mode préféré : en salle à Abidjan ou en ligne depuis chez vous.
+          </p>
+
+          <!-- 2 Modes de Formation (Local vs Distance) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto mt-8 text-left">
+            <div class="bg-forest p-5 rounded-2xl border border-orange/40 flex items-start gap-3">
+              <span class="text-2xl">📍</span>
+              <div>
+                <h4 class="font-display font-bold text-sm text-white">En Local / Présentiel (Abidjan)</h4>
+                <p class="text-xs text-muted mt-1">Sessions pratiques en présentiel avec formateur expérimenté à vos côtés pour un suivi pas à pas.</p>
+              </div>
+            </div>
+
+            <div class="bg-forest p-5 rounded-2xl border border-moss flex items-start gap-3">
+              <span class="text-2xl">🌐</span>
+              <div>
+                <h4 class="font-display font-bold text-sm text-white">À Distance (En Direct & Vidéos)</h4>
+                <p class="text-xs text-muted mt-1">Visioconférence interactive avec partage d'écran et accès aux cours enregistrés 24h/24.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Les 4 Domaines de Formation Clés -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          
+          <!-- Domaine 1 : BTP & Architecture -->
+          <div class="bg-forest p-6 rounded-3xl border border-moss hover:border-orange transition-all">
+            <div class="text-2xl mb-3">⛑️</div>
+            <h3 class="font-display font-bold text-base text-white mb-2">BTP & Génie Civil</h3>
+            <p class="text-xs text-muted mb-4">Plans techniques d'exécution, calculs de structures et gestion de chantiers.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">AutoCAD</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">Revit Structure</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">Robot Structural</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">Civil 3D</span>
+            </div>
+            <a data-wa="formation-btp" href="#" class="inline-flex items-center gap-1.5 text-xs font-bold text-orange hover:underline">
+              <span>S'inscrire à cette filière</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- Domaine 2 : Architecture & 3D -->
+          <div class="bg-forest p-6 rounded-3xl border border-moss hover:border-orange transition-all">
+            <div class="text-2xl mb-3">🏢</div>
+            <h3 class="font-display font-bold text-base text-white mb-2">Architecture & 3D</h3>
+            <p class="text-xs text-muted mb-4">Modélisation de bâtiments, perspectives réalistes et visites virtuelles animées.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">ArchiCAD</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">SketchUp</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">D5 Render</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">Lumion / Enscape</span>
+            </div>
+            <a data-wa="formation-archi" href="#" class="inline-flex items-center gap-1.5 text-xs font-bold text-orange hover:underline">
+              <span>S'inscrire à cette filière</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- Domaine 3 : Design Graphique -->
+          <div class="bg-forest p-6 rounded-3xl border border-moss hover:border-orange transition-all">
+            <div class="text-2xl mb-3">🎨</div>
+            <h3 class="font-display font-bold text-base text-white mb-2">Design Graphique</h3>
+            <p class="text-xs text-muted mb-4">Création de logos vectoriels, affiches professionnelles, flyers et visuels percutants.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">Photoshop</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">Illustrator</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">InDesign</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">Canva Pro</span>
+            </div>
+            <a data-wa="formation-graphisme" href="#" class="inline-flex items-center gap-1.5 text-xs font-bold text-orange hover:underline">
+              <span>S'inscrire à cette filière</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- Domaine 4 : Bureautique, Web & IA -->
+          <div class="bg-forest p-6 rounded-3xl border border-moss hover:border-orange transition-all">
+            <div class="text-2xl mb-3">⚡</div>
+            <h3 class="font-display font-bold text-base text-white mb-2">Bureautique, Web & IA</h3>
+            <p class="text-xs text-muted mb-4">Excel avancé, tableaux croisés, sites web et productivité avec l'intelligence artificielle.</p>
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">Excel Pro</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">HTML / CSS / JS</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">Python</span>
+              <span class="px-2.5 py-1 rounded-lg bg-deep text-[11px] font-semibold text-orange">ChatGPT / Claude</span>
+            </div>
+            <a data-wa="formation-bureautique" href="#" class="inline-flex items-center gap-1.5 text-xs font-bold text-orange hover:underline">
+              <span>S'inscrire à cette filière</span>
+              <span>→</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Encadré Réassurance Attestation & Tarifs Étudiants -->
+        <div class="bg-gradient-to-r from-forest via-deep to-forest p-8 rounded-3xl border-2 border-orange/50 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange/20 text-orange text-xs font-bold">
+              🎓 Attestation de fin de formation officielle
+            </div>
+            <h3 class="font-display font-extrabold text-xl sm:text-2xl text-white">
+              Valorisez vos compétences techniques auprès des recruteurs
+            </h3>
+            <p class="text-xs sm:text-sm text-muted max-w-xl">
+              Chaque formation est validée par des projets concrets et débouche sur une attestation formelle. Tarifs préférentiels pour les étudiants et facilités de paiement en 2 fois.
+            </p>
+          </div>
+          <a data-wa="catalogue" href="#" class="whitespace-nowrap px-8 py-4 rounded-full bg-orange hover:bg-orange-hover text-deep font-display font-black text-xs uppercase tracking-wider shadow-brutal hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+            Recevoir le programme & tarifs
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= PILIER 3 : MATÉRIEL INFORMATIQUE & GAMING ================= -->
+    <section id="materiel" class="py-16 md:py-24 bg-paper border-b border-line">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-display font-extrabold uppercase tracking-widest text-moss">Pôle Équipement Tech & BTP</span>
+          <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-ink mt-2 mb-4">
+            Vente de Matériel Informatique & Gaming
+          </h2>
+          <div class="w-20 h-1.5 bg-orange mx-auto rounded-full mb-4"></div>
+          <p class="text-soft text-base">
+            Équipez-vous pour vos études, vos calculs BTP, vos rendus 3D ou vos sessions de gaming avec du matériel testé, garanti et prêt à l'emploi.
+          </p>
+        </div>
+
+        <!-- 3 Blocs Matériel Simples & Complets -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          
+          <!-- Bloc 1 : PC Portables & Stations BTP/Archi -->
+          <div class="bg-white p-8 rounded-3xl border-2 border-ink shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="text-3xl">💻</div>
+              <h3 class="font-display font-bold text-xl text-ink">PC Portables & Stations Pro</h3>
+              <p class="text-soft text-xs leading-relaxed">
+                Ordinateurs portables et unités centrales reconditionnés ou neufs, parfaitement configurés avec cartes graphiques dédiées pour faire tourner Revit, ArchiCAD, AutoCAD et Lumion.
+              </p>
+              <ul class="text-xs text-soft space-y-2 pt-2">
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Configs Core i5 / i7 avec cartes graphiques dédiées</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> PC légers & autonomes pour étudiants</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Systèmes testés avec garantie & logiciels installés</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-line mt-6">
+              <a data-wa="materiel-pc" href="#" class="w-full py-3 rounded-xl bg-ink hover:bg-orange hover:text-deep text-paper font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Voir les PC disponibles</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bloc 2 : Composants & Stockage -->
+          <div class="bg-white p-8 rounded-3xl border-2 border-ink shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="text-3xl">⚡</div>
+              <h3 class="font-display font-bold text-xl text-ink">Composants & Stockage</h3>
+              <p class="text-soft text-xs leading-relaxed">
+                Booster votre ordinateur actuel avec des composants rapides et fiables pour éliminer les lenteurs sur vos logiciels lourds.
+              </p>
+              <ul class="text-xs text-soft space-y-2 pt-2">
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Disques SSD NVMe & SATA (256Go / 512Go / 1To)</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Barrettes de RAM 8Go / 16Go / 32Go DDR4 & DDR5</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Disques durs externes & clés USB haute vitesse</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-line mt-6">
+              <a data-wa="materiel-pieces" href="#" class="w-full py-3 rounded-xl bg-ink hover:bg-orange hover:text-deep text-paper font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Booster ma machine</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Bloc 3 : Gaming & Consoles -->
+          <div class="bg-forest text-paper p-8 rounded-3xl border-2 border-forest shadow-brutal-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="text-3xl">🎮</div>
+              <h3 class="font-display font-bold text-xl text-white">Consoles & Gaming</h3>
+              <p class="text-muted text-xs leading-relaxed">
+                Tout pour les gamers passionnés : consoles de jeux, manettes de précision, casques et installation de jeux.
+              </p>
+              <ul class="text-xs text-muted space-y-2 pt-2">
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Consoles PlayStation, Xbox & Switch</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Manettes sans fil & claviers gaming</li>
+                <li class="flex items-center gap-2"><span class="text-orange font-bold">✔</span> Packs de jeux récents préinstallés</li>
+              </ul>
+            </div>
+            <div class="pt-6 border-t border-moss/60 mt-6">
+              <a data-wa="materiel-gaming" href="#" class="w-full py-3 rounded-xl bg-orange hover:bg-orange-hover text-deep font-display font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+                <span>Commander du gaming</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ================= SECTION CONTACT RAPIDE ================= -->
+    <section id="contact" class="py-16 md:py-20 bg-deep text-paper relative">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-forest border border-orange/40 text-xs font-bold text-orange">
+          <span>📍 Abidjan, Côte d'Ivoire</span>
+        </div>
+
+        <h2 class="font-display font-black text-3xl sm:text-4xl text-white">
+          Un projet BTP, un site web, un CV ou une formation ?
+        </h2>
+
+        <p class="text-muted text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          Écrivez-nous directement sur WhatsApp. Nous analysons votre besoin et vous répondons immédiatement avec un devis ou les détails du programme.
+        </p>
+
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a data-wa="contact-direct" href="#" class="w-full sm:w-auto px-9 py-4 rounded-full bg-orange hover:bg-orange-hover text-deep font-display font-black text-sm uppercase tracking-wider shadow-brutal hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all flex items-center justify-center gap-3">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span>Discuter sur WhatsApp (+225 07 10 18 57 62)</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-deep text-muted border-t border-forest py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-full overflow-hidden border border-orange">
+          <img src="hero-badge.jpg" alt="YZ TECH" class="w-full h-full object-cover">
+        </div>
+        <span class="font-display font-black text-white">YZ <span class="text-orange">TECH</span></span>
+        <span class="text-muted/60">— BTP & 3D, Services Digitaux, Formations & Matériel Informatique</span>
+      </div>
+      <p class="text-muted/70">
+        © 2026 YZ TECH. Tous droits réservés. Abidjan, Côte d'Ivoire.
+      </p>
+    </div>
+  </footer>
+
+
+  <!-- ================= BOUTON FLOTTANT WHATSAPP ================= -->
+  <a data-wa="floating" href="#" target="_blank" rel="noopener" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 px-5 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-display font-bold text-xs shadow-2xl hover:scale-105 active:scale-95 transition-all">
+    <span class="relative flex h-3 w-3">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+    </span>
+    <span class="hidden sm:inline tracking-wide font-extrabold">Conseiller WhatsApp</span>
+    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
+
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    const PHONE = "2250710185762";
+    const WA_URL = "https://wa.me/" + PHONE + "?text=";
+
+    // Messages personnalisés selon le bouton d'action
+    const MESSAGES = {
+      "default": "Bonjour YZ TECH, je souhaite avoir des renseignements sur vos services et formations.",
+      "header": "Bonjour YZ TECH, je viens de votre site web et je souhaite échanger avec un conseiller.",
+      "mobile": "Bonjour YZ TECH, je souhaite poser une question sur vos prestations.",
+      "service-btp": "Bonjour YZ TECH, je souhaite faire réaliser des plans BTP / calcul de structure ou un métré. Quels sont vos tarifs et délais ?",
+      "service-archi": "Bonjour YZ TECH, je souhaite faire concevoir des plans d'architecture ou un permis de construire. Pouvez-vous m'accompagner ?",
+      "service-rendu3d": "Bonjour YZ TECH, je souhaite faire réaliser des perspectives 3D ou un rendu photoréaliste / visite virtuelle pour un projet.",
+      "service-web": "Bonjour YZ TECH, je suis intéressé par la création d'un site web (vitrine ou dynamique). Quel est le tarif et les délais ?",
+      "service-cv": "Bonjour YZ TECH, je souhaite faire concevoir ou refaire mon CV professionnel. Comment procéder ?",
+      "service-graphisme": "Bonjour YZ TECH, j'ai besoin d'un travail de design graphique (logo, affiche ou flyer). Pouvez-vous me faire un devis ?",
+      "formation-btp": "Bonjour YZ TECH, je souhaite m'inscrire à la formation BTP & Génie Civil (AutoCAD, Revit Structure, Robot). Merci de m'indiquer les modalités.",
+      "formation-archi": "Bonjour YZ TECH, je souhaite suivre la formation Architecture & 3D (ArchiCAD, SketchUp, D5 Render, Lumion).",
+      "formation-graphisme": "Bonjour YZ TECH, je souhaite suivre la formation Design Graphique (Photoshop, Illustrator).",
+      "formation-bureautique": "Bonjour YZ TECH, je souhaite m'inscrire à la formation Bureautique Pro, Dév Web ou IA.",
+      "catalogue": "Bonjour YZ TECH, je souhaite recevoir le catalogue complet des formations et les tarifs étudiants.",
+      "materiel-pc": "Bonjour YZ TECH, quels sont les PC portables et stations de travail (BTP / 3D / Graphisme) actuellement disponibles et leurs prix ?",
+      "materiel-pieces": "Bonjour YZ TECH, je souhaite booster mon ordinateur (SSD / RAM). Quels composants proposez-vous ?",
+      "materiel-gaming": "Bonjour YZ TECH, je souhaite me renseigner sur vos consoles, manettes et jeux vidéo.",
+      "contact-direct": "Bonjour YZ TECH, je souhaite vous contacter pour un besoin particulier (BTP, Web, Formation ou Matériel).",
+      "floating": "Bonjour YZ TECH, je souhaite échanger avec un conseiller en direct."
+    };
+
+    // Attribution dynamique des liens WhatsApp
+    document.querySelectorAll("[data-wa]").forEach(el => {
+      const key = el.dataset.wa || "default";
+      const msg = MESSAGES[key] || MESSAGES["default"];
+      el.href = WA_URL + encodeURIComponent(msg);
+      el.target = "_blank";
+      el.rel = "noopener";
+    });
+
+    // Basculement des catégories de services (BTP & 3D vs Digital & Web)
+    function switchServiceCategory(cat) {
+      const btpGroup = document.getElementById("services-group-btp");
+      const digitalGroup = document.getElementById("services-group-digital");
+      const btnBtp = document.getElementById("btn-tab-btp");
+      const btnDigital = document.getElementById("btn-tab-digital");
+
+      if (cat === "btp") {
+        btpGroup.classList.remove("hidden");
+        digitalGroup.classList.add("hidden");
+        btnBtp.className = "px-5 py-2 rounded-full text-xs font-display font-extrabold transition-all bg-ink text-paper shadow-sm";
+        btnDigital.className = "px-5 py-2 rounded-full text-xs font-display font-extrabold transition-all text-ink hover:bg-orange/20";
+      } else {
+        btpGroup.classList.add("hidden");
+        digitalGroup.classList.remove("hidden");
+        btnDigital.className = "px-5 py-2 rounded-full text-xs font-display font-extrabold transition-all bg-ink text-paper shadow-sm";
+        btnBtp.className = "px-5 py-2 rounded-full text-xs font-display font-extrabold transition-all text-ink hover:bg-orange/20";
+      }
+    }
+
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn?.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+    mobileMenu?.querySelectorAll("a").forEach(a => {
+      a.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+    });
+  </script>
+
+</body>
+</html>
